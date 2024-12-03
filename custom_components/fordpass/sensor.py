@@ -442,7 +442,7 @@ class CarSensor(
                     return zone
                 return None
             if self.sensor == "remoteStartStatus":
-                return {"Countdown:": self.data.get("remoteStartCountdownTimer", {}).get("value", 0)}
+                return {"Countdown": self.data.get("remoteStartCountdownTimer", {}).get("value", 0)}
             if self.sensor == "messages":
                 messages = {}
                 for value in  self.coordinator.data.get("messages", []):
