@@ -288,7 +288,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 class OptionsFlow(config_entries.OptionsFlow):
     def __init__(self, config_entry: config_entries.ConfigEntry):
         """Initialize options flow."""
-        self.config_entry = config_entry
+        self._config_entry = config_entry
 
     async def async_step_init(self, user_input=None):
         if user_input is not None:
@@ -296,25 +296,25 @@ class OptionsFlow(config_entries.OptionsFlow):
         options = {
             vol.Optional(
                 CONF_PRESSURE_UNIT,
-                default=self.config_entry.options.get(
+                default=self._config_entry.options.get(
                     CONF_PRESSURE_UNIT, DEFAULT_PRESSURE_UNIT
                 ),
             ): vol.In(PRESSURE_UNITS),
             vol.Optional(
                 CONF_DISTANCE_UNIT,
-                default=self.config_entry.options.get(
+                default=self._config_entry.options.get(
                     CONF_DISTANCE_UNIT, DEFAULT_DISTANCE_UNIT
                 ),
             ): vol.In(DISTANCE_UNITS),
             vol.Optional(
                 DISTANCE_CONVERSION_DISABLED,
-                default=self.config_entry.options.get(
+                default=self._config_entry.options.get(
                     DISTANCE_CONVERSION_DISABLED, DISTANCE_CONVERSION_DISABLED_DEFAULT
                 ),
             ): bool,
             vol.Optional(
                 UPDATE_INTERVAL,
-                default=self.config_entry.options.get(
+                default=self._config_entry.options.get(
                     UPDATE_INTERVAL, UPDATE_INTERVAL_DEFAULT
                 ),
             ): int,
